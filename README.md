@@ -1,7 +1,18 @@
 ## Express-bemhtml-priv.js
 
+Simple render engine for express with bemhtml and priv.js technologies    
+
+
 ```javascript
-require('express-bemhtml-priv.js').init(app, {..});
-app.use('view engine', 'bemhtml-priv.js')
-res.render('blocks["market"]', {..});
+var engine = require('express-bemhtml-priv.js');
+engine.init(app, {
+    bemhtml: 'path/to/bemhtml/file;
+    priv: 'path/to/priv.js/file'
+});
+
+...
+engine.render('blocks["market"]', {..})
+    .then(function (tmpl) {
+        res.send(tmpl);
+    });;
 ```

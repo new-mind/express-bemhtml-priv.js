@@ -1,10 +1,10 @@
 {
   "name": "express-bemhtml-priv.js",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Express engine with bemthml+priv",
   "main": "src/lib.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "./node_modules/mocha/bin/mocha test/**"
   },
   "repository": {
     "type": "git",
@@ -26,6 +26,8 @@
     "q": "^1.4.1"
   },
   "devDependencies": {
-    "mocha": "^2.4.5"
+    "express": "^4.13.4",
+    "mocha": "^2.4.5",
+    "request": "^2.69.0"
   }
 }
