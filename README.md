@@ -6,7 +6,7 @@ Simple render engine for express with bemhtml and priv.js technologies
 ```javascript
 var engine = require('express-bemhtml-priv.js');
 engine.init(app, {
-    bemhtml: 'path/to/bemhtml/file;
+    bemhtml: 'path/to/bemhtml/file',
     priv: 'path/to/priv.js/file'
 });
 
