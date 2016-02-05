@@ -55,13 +55,19 @@ module.exports = {
             var strArgs = context && JSON.stringify(context) || null;
             var code = util.format("var __response = %s.apply(null, %s)", privFn, strArgs); 
             var isBemjson = opts && opts.isBemjson;
-            vm.runInContext(code, sandbox);
-
-            if (!isBemjson) {
-                code = ("__response = BEMHTML.apply(__response)");
+            try {
                 vm.runInContext(code, sandbox);
+
+                if (!isBemjson) {
+                    code = ("__response = BEMHTML.apply(__response)");
+                    vm.runInContext(code, sandbox);
+                }
+            } catch (e) {
+                d.reject(e);
             }
             d.resolve(sandbox['__response']);
+        }, function (err) {
+            d.reject(err);
         });
 
         return d.promise;

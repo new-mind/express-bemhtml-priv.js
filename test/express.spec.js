@@ -22,14 +22,28 @@ describe('Render templates through out express', function () {
         pid.close();
     });
 
-    it('simple', function (done) {
-        app.get('*', function (req, res) {
-            engine.render('blocks["button"]').then(function (tmpl) {
-                assert.equal(tmpl, buttonTmpl);
-                done();
-            }); 
-        });
+    describe('Success', function () {
+        it('simple', function (done) {
+            app.get('*', function (req, res) {
+                engine.render('blocks["button"]').then(function (tmpl) {
+                    assert.equal(tmpl, buttonTmpl);
+                    done();
+                });
+            });
 
-        request.get('http://localhost:' + PORT);
+            request.get('http://localhost:' + PORT);
+        });
+    });
+
+    describe('Failure', function () {
+        it('request undefined function', function (done) {
+            engine.render('undefinedFn').then(function () {
+                assert(false, 'Shouldnt be successfull');
+                done();
+            }, function () {
+                assert(true);
+                done();
+            });
+        });
     });
 });
