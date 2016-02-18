@@ -12,7 +12,7 @@ module.exports = {
      */
     init: function (app, opts) {
         var self = this;
-        var sandbox = this._sandbox = vm.createContext();
+        var sandbox = this._sandbox = vm.createContext({console: console});
         this._inited = Q.defer();
 
         if (!opts.bemhtml)
